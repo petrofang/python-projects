@@ -20,6 +20,7 @@ Output the final cost for the day's rental
 THIS WEEK's FOCUS is WHILE LOOPS, 
 so please use ONLY WHILE LOOPS for repetition in this project.
 """
+
 options = ["A", "B", "C", "D"] # list for cleaner code
 
 # # # dictionary for number of days
