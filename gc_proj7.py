@@ -36,7 +36,7 @@ beverageCost(numGuests)
                     If there are 22 guests, 8 bottles would be provided
                     If there are 23 guests, 8 bottles would be provided
                     If there are 24 guests, 8 bottles would be provided.
-    The wine is  priced at $10 per bottle.
+    The wine is priced at $10 per bottle.
     This function is to calculate and RETURN the beverage cost.  
     (This function is to perform NO output).
 
@@ -70,3 +70,40 @@ STYLE:  Be sure that your program names variables in a meaningful manner.
         performs one task).  A comment need not be a complete sentence - 
         just a short phrase.
 """
+def menu():
+    # print function for program option menu
+    print   (""" > 1    output cost of the food
+                 > 2    output the cost of beverages
+                 > 3    output ALL INFO 
+                (number of guests, food cost, beverage cost and total cost)
+             
+                Select: 1    2 or 3 \n
+             """)
+
+def foodCost(numGuests): 
+    # return the cost of the food
+    pass
+
+def beverageCost(numGuests):
+    # return the cost of beverages
+    pass
+
+def main(): 
+    guests=0
+    # wait for viable guest count:
+    while (guests < 1) or (guests > 50): 
+        guests=int(input("how many guests? (1-50)\n>"))
+    
+    option=0
+    # wait for viable option:
+    while option not in [1, 2, 3]:
+        menu()
+        try: option = int(input("now what?\n > ")[0])
+        except: pass
+
+    if option==1: 
+    
+        
+
+
+if __name__ == "__main__": main()
