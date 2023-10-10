@@ -85,7 +85,12 @@ def menu() -> None:
 
 def foodCost(numGuests: int) -> float: 
     # return the cost of the food
-    return float(numGuests) * 40.00 # FIXME
+    if   numGuests<=10: cake=15.0
+    elif numGuests<=25: cake=30.0
+    else:               cake=65.0
+    plates=numGuests*8.0
+    cost = plates+cake
+    return cost
 
 def beverageCost(numGuests: int) -> float:
     # return the cost of beverages
