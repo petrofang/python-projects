@@ -105,8 +105,8 @@ def main():
         try: option = int(input("now what?\n > ")[0])
         except: pass
 
-    if   option==1: print(f"{foodCost(guests):.2}")
-    elif option==2: print(f"{beverageCost(guests):.2}")
+    if   option==1: print(f"Food Cost: ${foodCost(guests):2}")
+    elif option==2: print(f"{beverageCost(guests):2}")
     elif option==3: printInfo(guests)
     else: LookupError
 
