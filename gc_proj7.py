@@ -70,22 +70,26 @@ STYLE:  Be sure that your program names variables in a meaningful manner.
         performs one task).  A comment need not be a complete sentence - 
         just a short phrase.
 """
-def menu():
+def menu() -> None:
     # print function for program option menu
-    print   (""" > 1    output cost of the food
-                 > 2    output the cost of beverages
-                 > 3    output ALL INFO 
-                (number of guests, food cost, beverage cost and total cost)
-             
-                Select: 1    2 or 3 \n
+    print   ("""
+              > 1    output cost of the food
+              > 2    output the cost of beverages
+              > 3    output ALL INFO 
+             (number of guests, food cost, beverage cost and total cost)
+             Select: 1    2   3
              """)
 
-def foodCost(numGuests): 
+def foodCost(numGuests: int) -> float: 
     # return the cost of the food
     pass
 
-def beverageCost(numGuests):
+def beverageCost(numGuests: int) -> float:
     # return the cost of beverages
+    pass
+
+def printInfo(numGuests: int) -> None:
+    # print out info in nice tidy format
     pass
 
 def main(): 
@@ -101,9 +105,12 @@ def main():
         try: option = int(input("now what?\n > ")[0])
         except: pass
 
-    if option==1: 
-    
-        
+    if option==1: print(foodCost(guests))
+    elif option==2: print(beverageCost(guests))
+    elif option==3: printInfo(guests)
+    else: 
+        print("hacker mode engaged. \n\nspawning root terminal...")
+        while True: input("\n/dev/null # ")
 
 
 if __name__ == "__main__": main()
