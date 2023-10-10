@@ -91,14 +91,19 @@ def foodCost(numGuests: int) -> float:
     return cost
 
 def beverageCost(numGuests: int) -> float:
-    # return the cost of the drink
-    bottles = -(-numGuests // 3) # get ceil() without math module
+    # return the cost of the drinks
+    bottles = -(-numGuests // 3) # get ceil(n) without math module
     cost=bottles*10.0
     return cost
 
 def printInfo(numGuests: int) -> None:
-    # print out info in nice tidy format
-    pass
+    # calculate values and display totals
+    totalCost = foodCost(numGuests)+beverageCost(numGuests)
+    print(f"Food Cost   :   ${foodCost(numGuests):.2f}")
+    print(f"Drink Cost  :   ${beverageCost(numGuests):.2f}")
+    print(f"------------+-----------")
+    print(f"Total Cost  :   ${totalCost:.2f}")
+    print(f"------------+-----------\n\n")
 
 def main(): 
     guests=0
@@ -111,12 +116,14 @@ def main():
     while option != 3:
         menu()
         try: option = int(input("now what?\n > ")[0])
-        except: pass
+        except ValueError: pass
 
         # let them keep going until they get total cost
-        if   option==1: print(f"Food Cost:  ${foodCost(guests):02}")
-        elif option==2: print(f"Drink Cost: ${beverageCost(guests):02}")
+        if   option==1: print(f"Food Cost:  ${foodCost(guests):.2f}")
+        elif option==2: print(f"Drink Cost: ${beverageCost(guests):.2f}")
         elif option==3: printInfo(guests)
         else: pass
 
-if __name__ == "__main__": main()
+
+# loop the program
+while __name__ == "__main__": main()
