@@ -71,8 +71,6 @@ STYLE:  Be sure that your program names variables in a meaningful manner.
         just a short phrase.
 """
 
-import sys
-
 def menu() -> None:
     # print function for program option menu
     print   ("""
@@ -93,8 +91,10 @@ def foodCost(numGuests: int) -> float:
     return cost
 
 def beverageCost(numGuests: int) -> float:
-    # return the cost of beverages
-    return float(numGuests) * 40.00 # FIXME
+    # return the cost of the drink
+    bottles = -(-numGuests // 3) # get ceil() without math module
+    cost=bottles*10.0
+    return cost
 
 def printInfo(numGuests: int) -> None:
     # print out info in nice tidy format
@@ -117,7 +117,6 @@ def main():
         if   option==1: print(f"Food Cost:  ${foodCost(guests):02}")
         elif option==2: print(f"Drink Cost: ${beverageCost(guests):02}")
         elif option==3: printInfo(guests)
-        else: print(f"user selected: {option}", file=sys.stderr)
-
+        else: pass
 
 if __name__ == "__main__": main()
