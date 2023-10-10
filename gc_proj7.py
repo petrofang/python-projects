@@ -70,6 +70,9 @@ STYLE:  Be sure that your program names variables in a meaningful manner.
         performs one task).  A comment need not be a complete sentence - 
         just a short phrase.
 """
+
+import sys
+
 def menu() -> None:
     # print function for program option menu
     print   ("""
@@ -77,16 +80,16 @@ def menu() -> None:
               > 2    output the cost of beverages
               > 3    output ALL INFO 
              (number of guests, food cost, beverage cost and total cost)
-             Select: 1    2   3
+             Select: 1    2    3
              """)
 
 def foodCost(numGuests: int) -> float: 
     # return the cost of the food
-    return float(numGuests) * 40.0 # FIXME
+    return float(numGuests) * 40.00 # FIXME
 
 def beverageCost(numGuests: int) -> float:
     # return the cost of beverages
-    return float(numGuests) * 40.0 # FIXME
+    return float(numGuests) * 40.00 # FIXME
 
 def printInfo(numGuests: int) -> None:
     # print out info in nice tidy format
@@ -100,15 +103,16 @@ def main():
     
     option=0
     # wait for viable option:
-    while option not in [1, 2, 3]:
+    while option != 3:
         menu()
         try: option = int(input("now what?\n > ")[0])
         except: pass
 
-    if   option==1: print(f"Food Cost: ${foodCost(guests):2}")
-    elif option==2: print(f"{beverageCost(guests):2}")
-    elif option==3: printInfo(guests)
-    else: LookupError
+        # let them keep going until they get total cost
+        if   option==1: print(f"Food Cost:  ${foodCost(guests):02}")
+        elif option==2: print(f"Drink Cost: ${beverageCost(guests):02}")
+        elif option==3: printInfo(guests)
+        else: print(f"user selected: {option}", file=sys.stderr)
 
 
 if __name__ == "__main__": main()
