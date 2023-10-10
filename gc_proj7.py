@@ -82,11 +82,11 @@ def menu() -> None:
 
 def foodCost(numGuests: int) -> float: 
     # return the cost of the food
-    pass
+    return float(numGuests) * 40.0 # FIXME
 
 def beverageCost(numGuests: int) -> float:
     # return the cost of beverages
-    pass
+    return float(numGuests) * 40.0 # FIXME
 
 def printInfo(numGuests: int) -> None:
     # print out info in nice tidy format
@@ -105,12 +105,10 @@ def main():
         try: option = int(input("now what?\n > ")[0])
         except: pass
 
-    if option==1: print(foodCost(guests))
-    elif option==2: print(beverageCost(guests))
+    if   option==1: print(f"{foodCost(guests):.2}")
+    elif option==2: print(f"{beverageCost(guests):.2}")
     elif option==3: printInfo(guests)
-    else: 
-        print("hacker mode engaged. \n\nspawning root terminal...")
-        while True: input("\n/dev/null # ")
+    else: LookupError
 
 
 if __name__ == "__main__": main()
