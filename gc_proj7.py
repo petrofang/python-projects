@@ -99,6 +99,8 @@ def beverageCost(numGuests: int) -> float:
 def printInfo(numGuests: int) -> None:
     # calculate values and display totals
     totalCost = foodCost(numGuests)+beverageCost(numGuests)
+    print(f"# Guests    :   {numGuests}")
+    print(f"------------+-----------")
     print(f"Food Cost   :   ${foodCost(numGuests):.2f}")
     print(f"Drink Cost  :   ${beverageCost(numGuests):.2f}")
     print(f"------------+-----------")
