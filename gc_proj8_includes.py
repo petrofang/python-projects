@@ -60,9 +60,8 @@ doing so is a good way to ensure that you are not using any
 global variables in your function!!!
 '''
 
-import gc_proj8_includes
+def add_item(iList: list): pass
+def remove_item(iList: list): pass
+def printOut(iList: list): pass
 
-def main(): pass
-
-if __name__ == "__main__":
-    main()
+if __name__=="__main__": raise EOFError("")
