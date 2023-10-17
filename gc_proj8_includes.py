@@ -60,7 +60,12 @@ doing so is a good way to ensure that you are not using any
 global variables in your function!!!
 '''
 
-def add_item(iList: list): pass
+def add_item(iList: list) -> list:
+    item=input("what would you like to add to the list?\n > ")
+    if item not in iList: iList.append(item)
+    else: print("OK, and it's already on the list")
+    return iList
+
 def remove_item(iList: list): pass
 def printOut(iList: list): pass
 
