@@ -59,14 +59,20 @@ into your main.  Not only is this a more professional touch, but
 doing so is a good way to ensure that you are not using any 
 global variables in your function!!!
 '''
+#gc_proj8_includes.py
 
 def add_item(iList: list) -> list:
+    # prompt user for item to add
     item=input("what would you like to add to the list?\n > ")
     if item not in iList: iList.append(item)
     else: print("OK, and it's already on the list")
     return iList
 
 def remove_item(iList: list): pass
-def printOut(iList: list): pass
+    # prompt user for item to remove
 
-if __name__=="__main__": raise EOFError("")
+def printOut(iList: list): pass
+    # print out the whole list
+
+# just to make it clear this is a module:
+if __name__=="__main__": raise EOFError
