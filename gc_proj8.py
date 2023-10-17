@@ -60,23 +60,11 @@ doing so is a good way to ensure that you are not using any
 global variables in your function!!!
 '''
 
-
+# import module functions
 from gc_proj8_includes import add_item
 from gc_proj8_includes import remove_item
 from gc_proj8_includes import printOut
 from gc_proj8_includes import find_item
-theShoppingList=[]
-
-def main(): 
-    choice=""
-    while choice != "X":
-        printMenu()
-        choice=input("Select an option: > ")[0].upper
-        if choice=="A": theShoppingList=add_item(theShoppingList)
-        if choice=="F": find_item(theShoppingList)
-        if choice=="P": printOut(theShoppingList)
-        if choice=="R": theShoppingList=remove_item(theShoppingList)
-        if choice=="X": quit()
 
 def printMenu():
     print('''
@@ -88,5 +76,17 @@ def printMenu():
 |  E(X)IT the shopping list program |
 +===================================+''')   
 
+def main(): 
+    theShoppingList = []
+    choice=""
+    while choice != "X":
+        printMenu()
+        choice=input("Select an option: > ")[0].upper()
+        if choice == "A": theShoppingList = add_item(theShoppingList)
+        if choice == "F": find_item(theShoppingList)
+        if choice == "P": printOut(theShoppingList)
+        if choice == "R": theShoppingList = remove_item(theShoppingList)
+        if choice == "X": quit() # but... the list disappears from memory
+        
 if __name__ == "__main__":
     main()

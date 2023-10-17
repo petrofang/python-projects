@@ -68,13 +68,15 @@ def add_item(iList: list) -> list:
     else: print("OK, but it's already on the list")
     return iList
 
-def remove_item(iList: list) -> list: 
+def remove_item(iList: list) -> list:
+    # prompt users for item to remove from list
     item=input("What would you like to remove from the list?\n > ")
     if item in iList: iList.remove(item)
     else: print("OK, it's already not on the list")
     return iList
 
 def find_item(iList: list) -> None:
+    # see if an item is already on the list
     item= input("what item are you looking for?\n > ")
     nt=""
     if item not in iList: nt="n't"
@@ -82,7 +84,7 @@ def find_item(iList: list) -> None:
 
 def printOut(iList: list) -> None:
     # print out the whole list
-    WIDTH=24 ### FIXME: ? how to set fstring var as in f'{string:^WIDTH}'
+    # define some print functions
     def line():     print(f'+{"-"*24}+')
     def blank():    print(f'|{" "*24}|')
     line()
