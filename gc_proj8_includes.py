@@ -68,8 +68,11 @@ def add_item(iList: list) -> list:
     else: print("OK, and it's already on the list")
     return iList
 
-def remove_item(iList: list): pass
-    # prompt user for item to remove
+def remove_item(iList: list) -> list: 
+    item=input("What would you like to remove from the list?\n > ")
+    if item in iList: iList.remove(item)
+    else: print("OK, it's already not on the list")
+    return iList
 
 def printOut(iList: list): pass
     # print out the whole list
