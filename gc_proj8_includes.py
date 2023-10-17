@@ -74,8 +74,18 @@ def remove_item(iList: list) -> list:
     else: print("OK, it's already not on the list")
     return iList
 
-def printOut(iList: list): pass
+def printOut(iList: list) -> None:
     # print out the whole list
-
+    WIDTH=24 ### FIXME: ? how to set fstring var as in f'{string:^WIDTH}'
+    def line():     print(f'+{"-"*24}+')
+    def blank():    print(f'|{" "*24}|')
+    line()
+    blank()
+    print(f'|{"SH0PPING LIST":^24}|')
+    blank()
+    for i in range(len(iList)): print(f'|{iList[i]:^24}|')
+    blank()
+    line()
+    
 # just to make it clear this is a module:
 if __name__=="__main__": raise EOFError
