@@ -64,5 +64,14 @@ import gc_proj8_includes
 
 def main(): pass
 
+def printMenu():
+    print('''
++===================================+
+|   (A)DD an item to the list       |
+|   (F)IND an item on the list      |
+|   (P)RINT all items on the list   |
+|   (R)EMOVE an item from the list  |
++===================================+''')   
+
 if __name__ == "__main__":
     main()
