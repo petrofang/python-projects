@@ -62,7 +62,7 @@ def updateIndividualScore():
     pass # TODO: finish stub
 
 def outputAvgScore():
-    print(f'Average score: {(sum(score)/len(score))}')
+    print(f'Average score: {(sum(score)/len(score)):.2f}')
 
 def outputHighestScorer():
     pass # TODO: finish stub
