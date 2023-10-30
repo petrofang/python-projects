@@ -57,7 +57,20 @@ def enterNameAndScore():
         print(f'added {nameAndScore}')
     except:
         print(f'error: failed to add {nameAndScore}')
-        
+
+def updateIndividualScore():
+    pass # TODO: finish stub
+
+def outputAvgScore():
+    print(f'Average score: {(sum(score)/len(score))}')
+
+def outputHighestScorer():
+    pass # TODO: finish stub
+
+def outputNamesAndGradesAboveThreshold():
+    pass # TODO: finish stub
+
+
 def main():
     debug(DEBUG)
     userInput = ' ' if DEBUG else ' '
