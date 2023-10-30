@@ -28,6 +28,7 @@ Submit the .py file(s) containing your working program.
 DEBUG = True
 def debug(msg): print(f'DEBUG: {msg}') if DEBUG else None
 
+PROMPT=" > "
 name=[]
 score=[]
 
@@ -35,8 +36,40 @@ def outputAllStudedentsAndTheirScores(name: list, score:list) -> None:
     for i in len(name):
         print(f'{name[i].capitalize()}: {score[i]:.1f}')
 
+def printMenu():
+    '''print the options menu.'''
+    print(f' +----------  MENU  ----------+')
+    print(f' |  (E)nter a name and score')
+    print(f' |  (A)ll students and scores')
+    print(f' |  (U)pdate a student\'s score')
+    print(f' | a(V)erage of all scores')
+    print(f' |  (H)ighest scorer')
+    print(f' |  (T)hreshold-or-higher scores')
+    print(f' |  (Q)uit this program')
+    print(f' +----------------------------+')
+    
+def enterNameAndScore():
+    print('enter a name and score, seperated by a comma')
+    nameAndScore=input(PROMPT).split(',')
+    name.append(nameAndScore[0].capitalize())
+    try: 
+        score.append(nameAndScore[1]) 
+        print(f'added {nameAndScore}')
+    except:
+        print(f'error: failed to add {nameAndScore}')
 def main():
     debug(DEBUG)
-    userInput = None if DEBUG else None
+    userInput = ' ' if DEBUG else ' '
+    menuOptions=['E', 'A', 'U', 'V', 'H', 'T']
+    while True:
+        if userInput[0].upper() == 'Q': quit()
+        elif userInput[0].upper() == 'E': enterNameAndScore()
+        elif userInput[0].upper() == 'A': outputAllStudedentsAndTheirScores(name, score)
+        elif userInput[0].upper() == 'U': updateIndividualScore()
+        elif userInput[0].upper() == 'V': outputAvgScore()
+        elif userInput[0].upper() == 'H': outputHighestScorer()
+        elif userInput[0].upper() == 'T': outputNamesAndGradesAboveThreshold()
+        printMenu()
+        userInput=input(PROMPT)
 
 if __name__=="__main__": main()
