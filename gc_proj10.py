@@ -28,6 +28,13 @@ Submit the .py file(s) containing your working program.
 DEBUG = True
 def debug(msg): print(f'DEBUG: {msg}') if DEBUG else None
 
+name=[]
+score=[]
+
+def outputAllStudedentsAndTheirScores(name: list, score:list) -> None:
+    for i in len(name):
+        print(f'{name[i].capitalize()}: {score[i]:.1f}')
+
 def main():
     debug(DEBUG)
     userInput = None if DEBUG else None
