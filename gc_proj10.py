@@ -33,8 +33,8 @@ name=[]
 score=[]
 
 def outputAllStudedentsAndTheirScores(name: list, score:list) -> None:
-    for i in len(name):
-        print(f'{name[i].capitalize()}: {score[i]:.1f}')
+    for i in range(len(name)):
+        print(f'{name[i].capitalize()}: {float(score[i]):.1f}')
 
 def printMenu():
     '''print the options menu.'''
@@ -53,10 +53,11 @@ def enterNameAndScore():
     nameAndScore=input(PROMPT).split(',')
     name.append(nameAndScore[0].capitalize())
     try: 
-        score.append(nameAndScore[1]) 
+        score.append(float(nameAndScore[1])) 
         print(f'added {nameAndScore}')
     except:
         print(f'error: failed to add {nameAndScore}')
+        
 def main():
     debug(DEBUG)
     userInput = ' ' if DEBUG else ' '
