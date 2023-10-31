@@ -28,13 +28,13 @@ Submit the .py file(s) containing your working program.
 DEBUG = False
 def debug(msg): print(f'DEBUG: {msg}') if DEBUG else None
 
-PROMPT=">>> "
+PROMPT="\n>>> "
 name=[]
 score=[]
 
 def outputAllStudedentsAndTheirScores(name: list, score:list) -> None:
     for i in range(len(name)):
-        print(f'{name[i].capitalize()}: {float(score[i]):.1f}')
+        print(f'{name[i]:<30}: {float(score[i]):.2f}')
 
 def printMenu():
     '''print the options menu.'''
@@ -50,20 +50,61 @@ def printMenu():
     
 def enterNameAndScore(): 
     print('enter a name and score, seperated by a comma')
-    # TODO: better input santizing, first/last name, etc
+    # santize by splitting, stripping, and floating it:
     nameAndScore=input(PROMPT).split(',',maxsplit=1)
-    name.append(nameAndScore[0].strip())
-    try: 
-        score.append(float(nameAndScore[1])) 
+    nameAndScore[0]=nameAndScore[0].strip()
+
+    try: nameAndScore[1]=float(nameAndScore[1])
+    except IndexError: 
+        print(f'IndexError - No comma in input: {nameAndScore[0]}')
+        return None
+    except ValueError: 
+        print(f'ValueError - Invalid score: {nameAndScore[1]}')
+        return None
+    
+    # check if they're already on the list:
+    if nameAndScore[0].lower() in [x.lower() for x in name]:
+        print(f'{nameAndScore[0]} is already on the list.')
+        Y=input(f'Would you like to update the score? Y/N{PROMPT}')
+        if Y[0].upper()=='Y': 
+            # call the update function directly with name and score
+            updateIndividualScore(nameAndScore[0], nameAndScore[1])
+    else: 
+        name.append(nameAndScore[0])
+        score.append(nameAndScore[1]) 
         print(f'added [{name[-1], score[-1]}]')
-    except:
-        print(f'error: failed to add {nameAndScore}')
-        name.pop() # we already added the name[-1] for this score
+        
+def updateIndividualScore(uName:str=None, uScore:float=None):
+    '''Update an individual score. Optionally provide index and score to update.'''
+   
+    if uName==None:
+    # if no name is provided in the function call:   
+        uName=input(f"what name would you like to update?{PROMPT}")
+        uName=uName.strip() 
 
-def updateIndividualScore():
-    pass # TODO: finish stub
+    # check name the list, case-insensitive comparison:
+    try: index=[x.lower() for x in name].index(uName.lower())    
+    except ValueError: 
+        print(f'"{uName}" not found in score list.')
+        return None
 
-def outputAvgScore():
+    # make we didn't get passed junk arguments somehow...
+    try: uScore=float(uScore)   # TypeError if None (good)
+    except: uScore=None         # ValueError if bad input (okay)
+    while uScore==None:         # now cleaned, so prompt:
+    # if no score is provided to the function call, prompt for one:
+        print(f"{uName} currently has a score of {score[index]}.")
+        uScore=input(f'Enter new score for {uName}:{PROMPT}')
+        try: uScore=float(uScore)
+        except ValueError:
+            print(f"invalid value: '{uScore}'") 
+            uScore=None
+
+    print(f"Updating score for {uName} to {uScore}.")
+    name[index]=uName
+    score[index]=uScore
+    
+def outputAvgScore(): 
     print(f'Average score: {(sum(score)/len(score)):.2f}')
 
 def outputHighestScorer():
