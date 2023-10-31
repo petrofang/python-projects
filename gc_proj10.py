@@ -32,9 +32,13 @@ PROMPT="\n>>> "
 name=[]
 score=[]
 
-def outputAllStudedentsAndTheirScores(name: list, score:list) -> None:
-    for i in range(len(name)):
-        print(f'{name[i]:<30}: {float(score[i]):.2f}')
+def outputAllStudentsAndTheirScores(threshold:float=None) -> None:
+    ''' print list of students and scores, optionally above a threshold.'''
+    if threshold:
+        for i in range(len(name)): 
+            if score[i] >= threshold: print(f'{name[i]:<30}: {score[i]:.2f}')
+    else: 
+        for i in range(len(name)): print(f'{name[i]:<30}: {float(score[i]):.2f}')
 
 def printMenu():
     '''print the options menu.'''
@@ -89,8 +93,8 @@ def updateIndividualScore(uName:str=None, uScore:float=None):
         return None
 
     # make we didn't get passed junk arguments somehow...
-    try: uScore=float(uScore)   # TypeError if None (good)
-    except: uScore=None         # ValueError if bad input (okay)
+    try: uScore=float(uScore)   # TypeError if None (good, expected)
+    except: uScore=None         # ValueError if bad input (okay, fix)
     while uScore==None:         # now cleaned, so prompt:
     # if no score is provided to the function call, prompt for one:
         print(f"{uName} currently has a score of {score[index]}.")
@@ -108,11 +112,15 @@ def outputAvgScore():
     print(f'Average score: {(sum(score)/len(score)):.2f}')
 
 def outputHighestScorer():
-    pass # TODO: finish stub
+    print(f'The highest scorer is: {name[score.index(max(score))]}')
 
 def outputNamesAndGradesAboveThreshold():
-    pass # TODO: finish stub
-
+    threshold=input(f"what is the threshold for minimum score to list?{PROMPT}")
+    try:threshold=float(threshold)
+    except: 
+        threshold=None
+        debug(f'failed to float(threshold) : {threshold}')
+    outputAllStudentsAndTheirScores(threshold)
 
 def main():
     debug(DEBUG)
@@ -121,7 +129,7 @@ def main():
     while True:
         if userInput[0].upper() == 'Q': quit()
         elif userInput[0].upper() == 'E': enterNameAndScore()
-        elif userInput[0].upper() == 'A': outputAllStudedentsAndTheirScores(name, score)
+        elif userInput[0].upper() == 'A': outputAllStudentsAndTheirScores()
         elif userInput[0].upper() == 'U': updateIndividualScore()
         elif userInput[0].upper() == 'V': outputAvgScore()
         elif userInput[0].upper() == 'H': outputHighestScorer()
