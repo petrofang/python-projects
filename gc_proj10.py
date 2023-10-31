@@ -25,10 +25,10 @@ Submit the .py file(s) containing your working program.
 (Don't worry about submitting a run, I will execute your program myself).
 '''
 
-DEBUG = True
+DEBUG = False
 def debug(msg): print(f'DEBUG: {msg}') if DEBUG else None
 
-PROMPT=" > "
+PROMPT=">>> "
 name=[]
 score=[]
 
@@ -48,15 +48,17 @@ def printMenu():
     print(f' |  (Q)uit this program')
     print(f' +----------------------------+')
     
-def enterNameAndScore():
+def enterNameAndScore(): 
     print('enter a name and score, seperated by a comma')
-    nameAndScore=input(PROMPT).split(',')
-    name.append(nameAndScore[0].capitalize())
+    # TODO: better input santizing, first/last name, etc
+    nameAndScore=input(PROMPT).split(',',maxsplit=1)
+    name.append(nameAndScore[0].strip())
     try: 
         score.append(float(nameAndScore[1])) 
-        print(f'added {nameAndScore}')
+        print(f'added [{name[-1], score[-1]}]')
     except:
         print(f'error: failed to add {nameAndScore}')
+        name.pop() # we already added the name[-1] for this score
 
 def updateIndividualScore():
     pass # TODO: finish stub
