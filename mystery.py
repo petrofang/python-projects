@@ -57,7 +57,7 @@ def MakeReservation():
             print(f'There are {remainingReservations} tickets still available.')
             reservationForNumber=int(input(f'How many people in the {reservationName} Party?{PROMPT}'))
             if reservationForNumber > remainingReservations:
-                print(f'I SAID, "There are {remainingReservations} seats still available."')
+                print(f'I SAID, "There are {remainingReservations} tickets still available."')
             else: 
                 reservations[reservationName]=reservationForNumber
                 print(f'{reservationName} party of {reservationForNumber} confirmed.')
