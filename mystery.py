@@ -46,7 +46,6 @@ def MakeReservation():
     '''Add customer name to the reservation list.'''
     totalReservations = sum([int(each) for each in reservations.values()])
     remainingReservations = MAX_RESERVATIONS - totalReservations
-    if remainingReservations < 0:raise ValueError # I doubt this will happen, but...
     if remainingReservations == 0:
         print(f'Unfortunately, we are no longer taking reservations. We are fully booked with {MAX_RESERVATIONS} reservations.')
     else:
