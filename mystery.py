@@ -34,7 +34,8 @@ BE SURE that your program INCLUDES at least one function definition.
 Submit the file containing your completed program. This file should be 
 named Mystery.py. Be sure your program is well-commented and well-tested.    
 '''
-DEBUG=False
+
+DEBUG=False 
 def debug(msg) -> None: print(f'DEBUG: {msg}') if DEBUG else None
 
 MAX_RESERVATIONS = 50
@@ -42,20 +43,41 @@ PROMPT = "\n>>> "
 reservations = {}
 
 def MakeReservation():
-    # TODO
-    
-    pass
+    '''Add customer name to the reservation list.'''
+    totalReservations = sum([int(each) for each in reservations.values()])
+    remainingReservations = MAX_RESERVATIONS - totalReservations
+    if remainingReservations < 0:raise ValueError # I doubt this will happen, but...
+    if remainingReservations == 0:
+        print(f'Unfortunately, we are no longer taking reservations. We are fully booked with {MAX_RESERVATIONS} reservations.')
+    else:
+        reservationName=input("Under what name would you like to make a reservation?" + PROMPT)
+        if reservationName in reservations.keys():
+            print(f"{reservationName} is already on the list, with a reservation for {reservations[reservationName]}.")
+            print(f"If you meant a different '{reservationName}' you will have to use a different name.")
+        else:
+            print(f'There are {remainingReservations} tickets still available.')
+            reservationForNumber=int(input(f'How many people in the {reservationName} Party?{PROMPT}'))
+            if reservationForNumber > remainingReservations:
+                print(f'I SAID, "There are {remainingReservations} seats still available."')
+            else: 
+                reservations[reservationName]=reservationForNumber
+                print(f'{reservationName} party of {reservationForNumber} confirmed.')
 
 def CheckReservation():
+    ''' Find out if a customer already has a reservation.'''
     reservationName=input("What name do you want to check for reservation?" + PROMPT)
-    if reservationName in reservations.keys:
-        print(f'{reservationName} has a reservation for {reservations[reservationName]}')
+    if reservationName in reservations.keys():
+        print(f'{reservationName} has a reservation for {reservations[reservationName]}.')
+    else:
+        print(f'{reservationName} is not on the list')
 
 def PrintReservationList():
-    # FIXME: make better
-    print(reservations)
+    '''Print the names and quantities of all customers who have reservations.'''
+    for each in reservations:
+        print(f'{each}: {reservations[each]}')
 
 def PrintNumberReservations():
+    '''Print the total number of reservations made so far.'''
     totalReservations=sum([int(each) for each in reservations.values()])
     print(f"Total reservations already made: {totalReservations} out of {MAX_RESERVATIONS}.")
 
@@ -68,7 +90,6 @@ def PrintOptionMenu():
 
 def main():
     debug(DEBUG)
-    userOption=""
     while True:
         PrintOptionMenu()
         userOption=input(PROMPT)
