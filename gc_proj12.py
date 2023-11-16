@@ -29,7 +29,7 @@ Your main process is to verify that the LibraryBook class works correctly
 PROMPT='>>> '
 
 def welcome():
-    print(f'\n{'='*75}\nWelcome to Library of One-Book Reading, Actively Restocked Yearly (L1BRARY)\n')
+    print(f'\n{"="*75}\nWelcome to Library of One-Book Reading, Actively Restocked Yearly (L1BRARY)\n')
 
 class LibraryBook:
     ''' I wonder if it would technically make sense to create each book as
