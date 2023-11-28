@@ -1,4 +1,4 @@
-from inventory import InventoryItem
+from gc13_inventory import InventoryItem
 PROMPT='\n > '
 inventory_list=[]
 
@@ -32,17 +32,18 @@ def print_inventory_list():
 def main():
     while True:
         user_input=input(f'{print_menu()}{PROMPT}')
+        print()
         if user_input.upper() == 'C': inventory_list.append(create_item())
         if user_input.upper() == 'P': 
            if inventory_list:  print_inventory_list() 
-           else: print('There is no inventory, yet.')
+           else: print('There is no inventory... yet.')
         if user_input.upper() == 'X': exit()
         try: item_Number=int(user_input)
         except: pass
         else:
-            if item_Number < 0: raise IndexError # stop messing around
+            if item_Number < 0: raise ValueError # stop messing around
             if item_Number < len(inventory_list): print(inventory_list[item_Number])
-            else: raise IndexError 
+            else: print(f'That was not one of the choices.')
 
 
 
