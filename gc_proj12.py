@@ -30,7 +30,7 @@ PROMPT='>>> '
 
 def welcome():
     print(f'\n{"="*75}\nWelcome to Library of One-Book Reading, Actively Restocked Yearly (L1BRARY)\n')
-
+ #        f'\n{'foo'}'  is acceptable in python 3.12 . . . 
 class LibraryBook:
     ''' I wonder if it would technically make sense to create each book as
         its own subclass of LibraryBook, and then the individual copy of
